@@ -78,7 +78,7 @@ listtile({
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 150,
+                width: MediaQuery.of(context).size.width * 0.4,
                 child: Text(
                   song,
                   overflow: TextOverflow.ellipsis,
@@ -89,7 +89,7 @@ listtile({
                 ),
               ),
               SizedBox(
-                width: 150,
+                width: MediaQuery.of(context).size.width * 0.3,
                 child: Text(
                   artist,
                   overflow: TextOverflow.ellipsis,

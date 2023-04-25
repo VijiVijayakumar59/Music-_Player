@@ -47,14 +47,12 @@ songtile({
             ),
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
-        ),
+
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: 150,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: Text(
                 song,
                 overflow: TextOverflow.ellipsis,
@@ -65,7 +63,7 @@ songtile({
               ),
             ),
             SizedBox(
-              width: 150,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: Text(
                 artist,
                 overflow: TextOverflow.ellipsis,
@@ -78,20 +76,9 @@ songtile({
           ],
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.001,
+          width: MediaQuery.of(context).size.width * 0.002,
         ),
-        IconButton(
-          icon: const Icon(Icons.play_circle_filled),
-          onPressed: () {
-            // NowPlayingPage.nowplayingindex.value = index;
-            // Navigator.of(context).push(
-            //   MaterialPageRoute(
-            //     builder: (ctx) => NowPlayingPage(),
-            //   ),
-            // );
-          },
-          color: Colors.orange,
-        ),
+       
         IconButton(
           onPressed: () {
             showOptions(context, index);

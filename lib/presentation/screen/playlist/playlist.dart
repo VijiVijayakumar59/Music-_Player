@@ -36,7 +36,8 @@ class _PlaylistViewState extends State<PlaylistView> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.009),
             ListTile(
               leading: FloatingActionButton(
-                child: Icon(
+                // ignore: sort_child_properties_last
+                child: const Icon(
                   Icons.playlist_add_circle_outlined,
                   size: 40,
                   //color: Colors.orange,
@@ -73,7 +74,9 @@ class _PlaylistViewState extends State<PlaylistView> {
                                 left: 16.0,
                               ),
                               child: SizedBox(
-                                height: 400,
+                                // height: 400,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -105,21 +108,28 @@ class _PlaylistViewState extends State<PlaylistView> {
                                                 artworkWidth: 130,
                                                 nullArtworkWidget: Image.asset(
                                                   "assets/images/playlist2.jpg",
-                                                  height: 80,
-                                                  width: 130,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.122,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.36,
                                                 ),
                                                 artworkBorder:
                                                     BorderRadius.circular(8),
                                               )
-                                            // ? Image.asset(
-                                            //     'assets/images/playlist2.png',
-                                            //     height: 130,
-                                            //     width: 130,
-                                            //   )
                                             : Image.asset(
                                                 "assets/images/playlist2.jpg",
-                                                height: 80,
-                                                width: 130,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.122,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.36,
                                               ),
                                       ),
                                     ),
@@ -129,7 +139,10 @@ class _PlaylistViewState extends State<PlaylistView> {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 100,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.26,
                                           child: Text(
                                             playlistsong[index].playlistname!,
                                             style: GoogleFonts.lato(
@@ -151,10 +164,14 @@ class _PlaylistViewState extends State<PlaylistView> {
                                               value: 1,
                                               // row with 2 children
                                               child: Row(
-                                                children: const [
+                                                children: [
                                                   Icon(Icons.delete),
                                                   SizedBox(
-                                                    width: 10,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.05,
                                                   ),
                                                   Text("Delete")
                                                 ],
@@ -173,57 +190,6 @@ class _PlaylistViewState extends State<PlaylistView> {
                       : const Center(
                           child: Text('Playlist is empty'),
                         );
-
-                  // return const ListTile(
-                  //   leading: SizedBox(
-                  //     height: 50,
-                  //     width: 50,
-                  //     child: Image(
-                  //       image: NetworkImage(
-                  //           "https://ik.imagekit.io/gdgtme/wp-content/uploads/2022/02/How-To-Create-A-Music-Playlist-For-Offline-Listening-In-2022.jpg"),
-                  //       fit: BoxFit.fill,
-                  //     ),
-                  //   ),
-                  //   title: TextWidget(
-                  //       commontext: "Melodies",
-                  //       selectcolor: Colors.black,
-                  //       textSize: 18,
-                  //       textweight: FontWeight.bold),
-                  //   subtitle: TextWidget(
-                  //       commontext: "5 Songs",
-                  //       selectcolor: Colors.grey,
-                  //       textSize: 16,
-                  //       textweight: FontWeight.normal),
-                  //   trailing: Icon(
-                  //     Icons.more_vert,
-                  //     color: Colors.black,
-                  //   );
-                  // );
-                  // const ListTile(
-                  //   leading: SizedBox(
-                  //     height: 50,
-                  //     width: 50,
-                  //     child: Image(
-                  //       image: NetworkImage(
-                  //           "https://www.switchingtomac.com/wp-content/uploads/2021/11/apple-music.jpeg"),
-                  //       fit: BoxFit.fill,
-                  //     ),
-                  //   ),
-                  //   title: TextWidget(
-                  //       commontext: "Legends",
-                  //       selectcolor: Colors.black,
-                  //       textSize: 18,
-                  //       textweight: FontWeight.bold),
-                  //   subtitle: TextWidget(
-                  //       commontext: "6 Songs",
-                  //       selectcolor: Colors.grey,
-                  //       textSize: 16,
-                  //       textweight: FontWeight.normal),
-                  //   trailing: Icon(
-                  //     Icons.more_vert,
-                  //     color: Colors.black,
-                  //   ),
-                  // );
                 },
               ),
             ),

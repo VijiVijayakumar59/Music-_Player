@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:music_playerr/models/songsmodel..dart';
-import 'package:music_playerr/presentation/widget/images_list.dart';
 
 import 'package:music_playerr/presentation/widget/home.dart';
 
@@ -18,17 +17,17 @@ class SuggestedPage extends StatelessWidget {
       body: ListView(
         children: [
           const RecentPage(),
-          Artist(
-            name: 'art',
-            title: "Artists",
-            borderradius: 100,
-            artistname: const [
-              'Selena Gomez',
-              'JungKook',
-              'Ariana Grande',
-            ],
-            photos: [img1, img2, img3],
-          ),
+          // Artist(
+          //   name: 'art',
+          //   title: "Artists",
+          //   borderradius: 100,
+          //   artistname: const [
+          //     'Selena Gomez',
+          //     'JungKook',
+          //     'Ariana Grande',
+          //   ],
+          //   photos: [img1, img2, img3],
+          // ),
           const MostPlayedWidget(),
         ],
       ),

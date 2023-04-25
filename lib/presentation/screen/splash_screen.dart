@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:music_playerr/models/mostplayed.dart';
 import 'package:music_playerr/models/songsmodel..dart';
 import 'package:music_playerr/presentation/screen/home_screen.dart';
@@ -47,19 +48,18 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/images/splash.jpg',
+                'assets/images/splash2.jpg',
               ),
               fit: BoxFit.cover,
             ),
           ),
-          child: const Center(
+          child: Center(
             child: Text(
               "TruBeat",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 50,
-                fontStyle: FontStyle.italic,
-              ),
+              style: GoogleFonts.dancingScript(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 60),
             ),
           ),
         ),

@@ -117,7 +117,7 @@ showOptions(BuildContext context, int index) {
         backgroundColor: Colors.orange,
         alignment: Alignment.bottomCenter,
         content: SizedBox(
-          height: 150,
+          height: MediaQuery.of(context).size.height * 0.2,
           width: vwidth,
           child: Padding(
             padding: const EdgeInsets.only(left: 10.0),
@@ -205,7 +205,7 @@ showPlaylistOptions(BuildContext context, int songindex) {
               backgroundColor: Colors.orange,
               alignment: Alignment.bottomCenter,
               content: SizedBox(
-                height: 200,
+                height: MediaQuery.of(context).size.height * 0.2,
                 width: vwidth,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10.0),
@@ -221,6 +221,7 @@ showPlaylistOptions(BuildContext context, int songindex) {
                                 playlistsongs.values.toList();
                             return ListView.builder(
                               shrinkWrap: true,
+                              //physics: AlwaysScrollableScrollPhysics(),
                               itemCount: playlistsong.length,
                               itemBuilder: (context, index) {
                                 return ListTile(
@@ -291,7 +292,7 @@ showPlaylistOptionsadd(BuildContext context) {
       backgroundColor: Colors.orange.shade600,
       alignment: Alignment.bottomCenter,
       content: SizedBox(
-        height: 250,
+        height: MediaQuery.of(context).size.height * 0.29,
         width: vwidth,
         child: Padding(
           padding: const EdgeInsets.only(left: 10.0),

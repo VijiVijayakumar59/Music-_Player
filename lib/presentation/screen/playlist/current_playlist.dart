@@ -157,7 +157,12 @@ class _CurrentPlaylistState extends State<CurrentPlaylist> {
                                                       Row(
                                                         children: [
                                                           SizedBox(
-                                                            width: 100,
+                                                            // width: 100,
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.14,
                                                             child: Text(
                                                               playsong[index]
                                                                   .songname!,
@@ -200,11 +205,15 @@ class _CurrentPlaylistState extends State<CurrentPlaylist> {
                                                                 },
                                                                 value: 1,
                                                                 child: Row(
-                                                                  children: const [
+                                                                  children: [
                                                                     Icon(Icons
                                                                         .delete),
                                                                     SizedBox(
-                                                                      width: 10,
+                                                                      // width: 10,
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.01,
                                                                     ),
                                                                     Text(
                                                                         "Remove")

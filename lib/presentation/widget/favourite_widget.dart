@@ -1,11 +1,9 @@
 import 'dart:developer';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:music_playerr/models/favouriteModel.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-
 import '../screen/favourites/addtofav.dart';
 import '../screen/now_playing.dart';
 
@@ -104,24 +102,12 @@ class _FavWidgetState extends State<FavWidget> {
                               ),
                             ),
                           ),
-                          // child: Container(
-                          //   height: MediaQuery.of(context).size.height * 0.15,
-                          //   width: MediaQuery.of(context).size.width * 0.37,
-                          //   decoration: BoxDecoration(
-                          //     borderRadius:
-                          //         const BorderRadius.all(Radius.circular(20)),
-                          //     image: DecorationImage(
-                          //       image: NetworkImage(songImages[index]),
-                          //       fit: BoxFit.cover,
-                          //     ),
-                          //   ),
-                          // ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SizedBox(
-                              width: 100,
+                              width: MediaQuery.of(context).size.width * 0.28,
                               child: Text(
                                 likedsongs[index].songname!,
                                 style: const TextStyle(
@@ -130,26 +116,15 @@ class _FavWidgetState extends State<FavWidget> {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            SpeedDial(
-                              animatedIcon: AnimatedIcons.ellipsis_search,
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black,
-                              activeForegroundColor: Colors.white,
-                              elevation: 0.0,
-                              buttonSize: const Size(35, 35),
-                              direction: SpeedDialDirection.down,
-                              children: [
-                                SpeedDialChild(
-                                  child: IconButton(
-                                    onPressed: () {
-                                      if (!checkfavour(index, BuildContext)) {}
-                                      removefavour(index);
-                                    },
-                                    icon: const Icon(Icons.favorite),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            IconButton(
+                                onPressed: () {
+                                  if (!checkfavour(index, BuildContext)) {
+                                    removefavour(index);
+                                  }
+                                },
+                                icon: Icon(
+                                  Icons.favorite,
+                                ))
                           ],
                         )
                       ],

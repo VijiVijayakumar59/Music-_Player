@@ -1,7 +1,8 @@
-import 'dart:developer';
-
+// ignore_for_file: void_checks
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:music_playerr/models/songsmodel..dart';
 import 'package:music_playerr/presentation/screen/search.dart';
@@ -10,8 +11,10 @@ import 'package:music_playerr/presentation/screen/playlist/playlist.dart';
 import 'package:music_playerr/presentation/screen/songs.dart';
 import 'package:music_playerr/presentation/screen/suggested.dart';
 import 'package:music_playerr/presentation/widget/favourite_widget.dart';
+import 'package:music_playerr/presentation/widget/popup.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
@@ -54,22 +57,13 @@ class _HomeScreenState extends State<HomeScreen>
           backgroundColor: Colors.white,
           child: ListView(
             children: [
+              SettingsOption(icon: Icons.key, title: 'Privacy Policy'),
               SettingsOption(
-                  function: () {
-                    log('hello privacy');
-                  },
-                  icon: Icons.key,
-                  title: 'Privacy Policy'),
-              SettingsOption(
-                  function: () {},
                   icon: Icons.receipt_long_outlined,
                   title: 'Terms and Conditions'),
-              SettingsOption(
-                  function: () {},
-                  icon: Icons.contact_mail,
-                  title: 'Contact Us'),
-              SettingsOption(
-                  function: () {}, icon: Icons.share, title: 'Share App'),
+              SettingsOption(icon: Icons.contact_mail, title: 'Contact Us'),
+              SettingsOption(icon: Icons.share, title: 'Share App'),
+              SettingsOption(icon: Icons.exit_to_app, title: 'Exit'),
             ],
           ),
         ),
@@ -77,15 +71,20 @@ class _HomeScreenState extends State<HomeScreen>
           iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Row(
-            children: const [
+            children: [
               Icon(
-                Icons.music_note,
+                Icons.music_note_sharp,
+                size: 32,
                 color: Colors.orange,
               ),
               Text(
                 "TruBeat",
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                // style:
+                //     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: GoogleFonts.dancingScript(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
               ),
             ],
           ),
@@ -105,15 +104,15 @@ class _HomeScreenState extends State<HomeScreen>
             isScrollable: true,
             labelStyle: TextStyle(fontSize: 16),
             labelColor: Colors.amber,
-            unselectedLabelColor: Colors.grey,
+            unselectedLabelColor: Colors.black,
             indicatorColor: Colors.orange,
             indicatorSize: TabBarIndicatorSize.label,
             tabs: [
               Tab(
-                text: "Suggested",
+                text: "Songs",
               ),
               Tab(
-                text: "Songs",
+                text: "Suggested",
               ),
               Tab(
                 text: "Favourites",
@@ -125,8 +124,8 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         body: TabBarView(children: [
-          SuggestedPage(),
           const SongList(),
+          SuggestedPage(),
           const FavWidget(),
           const PlaylistView()
         ]),
@@ -155,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen>
                     child: _audioPlayer.builderCurrent(
                       builder: (context, playing) {
                         return Container(
-                          height: 70,
+                          height: MediaQuery.of(context).size.height * 0.08,
                           color: const Color.fromARGB(255, 250, 195, 128),
                           child: Padding(
                             padding: const EdgeInsets.all(6.0),
@@ -203,7 +202,8 @@ class _HomeScreenState extends State<HomeScreen>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SizedBox(
-                                      width: 100,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.28,
                                       child: Text(
                                         //allDbsongs[value1].songname!,
                                         _audioPlayer.getCurrentAudioTitle,
@@ -215,7 +215,8 @@ class _HomeScreenState extends State<HomeScreen>
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 100,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.28,
                                       child: Text(
                                         _audioPlayer.getCurrentAudioArtist,
                                         //allDbsongs[value1].artist!,
@@ -297,42 +298,14 @@ class _HomeScreenState extends State<HomeScreen>
       ),
     );
   }
-
-  void skipMusic(AssetsAudioPlayer assetsAudioPlayer, int index,
-      List<Songs> dbsongs) async {
-    // if (index == dbsongs.length) {
-    //   for (var item in dbsongs) {
-    //     alldbsongs.first;
-    //   }
-    // }
-    _audioPlayer.open(Audio.file(dbsongs[index + 1].songurl!),
-        showNotification: true);
-    //await _audioPlayer.next();
-    setState(() {
-      NowPlayingPage.nowplayingindex.value++;
-    });
-    await _audioPlayer.stop();
-  }
-
-  void previousSong(AssetsAudioPlayer assetsAudioPlayer, int index,
-      List<Songs> dbsongs) async {
-    _audioPlayer.open(Audio.file(dbsongs[index - 1].songurl!),
-        showNotification: true);
-    // await _audioPlayer.next();
-    setState(() {
-      NowPlayingPage.nowplayingindex.value--;
-    });
-    await _audioPlayer.stop();
-  }
 }
 
+// ignore: must_be_immutable
 class SettingsOption extends StatelessWidget {
   String title;
   IconData icon;
-  void function;
   SettingsOption({
     Key? key,
-    required this.function,
     required this.icon,
     required this.title,
   }) : super(key: key);
@@ -343,13 +316,29 @@ class SettingsOption extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20.0, top: 20),
       child: GestureDetector(
         onTap: () {
-          function;
+          if (title == 'Privacy Policy') {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return settingmenupopup(mdFilename: 'privacypolicy.md');
+              },
+            );
+          } else if (title == 'Terms and Conditions') {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return settingmenupopup(mdFilename: 'termsandconditions.md');
+              },
+            );
+          } else if (title == 'Exit') {
+            return exit(context);
+          }
         },
         child: Row(
           children: [
             Icon(icon),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.05,
             ),
             Text(
               title,
@@ -360,4 +349,52 @@ class SettingsOption extends StatelessWidget {
       ),
     );
   }
+}
+
+// alert box for exit application
+void exit(context) {
+  //alert dialog
+  showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text(
+            'CONFIRM',
+            style: GoogleFonts.lato(
+              textStyle: const TextStyle(letterSpacing: .5, fontSize: 20),
+            ),
+          ),
+          content: Text(
+            'Are You Sure To Exit',
+            style: GoogleFonts.comfortaa(
+              textStyle: const TextStyle(
+                  letterSpacing: .5, fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: const Text(
+                'NO',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                SystemNavigator.pop();
+              },
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        );
+      });
 }

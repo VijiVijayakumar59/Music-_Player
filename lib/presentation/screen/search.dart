@@ -1,9 +1,7 @@
 import 'dart:core';
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:music_playerr/models/songsmodel..dart';
-import 'package:music_playerr/presentation/screen/splash_screen.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import 'now_playing.dart';
@@ -28,7 +26,6 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     dbsongs = box.values.toList();
     super.initState();
   }
@@ -49,7 +46,7 @@ class _SearchPageState extends State<SearchPage> {
                 color: Colors.black,
               )),
           title: SizedBox(
-            height: 50,
+            height: MediaQuery.of(context).size.height * 0.05,
             child: TextFormField(
               autofocus: true,
               controller: searchcontroller,

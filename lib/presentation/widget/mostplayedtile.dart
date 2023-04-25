@@ -27,80 +27,83 @@ songtileMost({
         ),
       );
     },
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        QueryArtworkWidget(
-          quality: 100,
-          artworkWidth: MediaQuery.of(context).size.width * 0.17,
-          artworkHeight: MediaQuery.of(context).size.height * 0.08,
-          keepOldArtwork: true,
-          artworkBorder: BorderRadius.circular(10),
-          id: image,
-          type: ArtworkType.AUDIO,
-          nullArtworkWidget: ClipRRect(
-            child: Image.asset(
-              'assets/images/playlist2.jpg',
-              height: MediaQuery.of(context).size.height * 0.08,
-              width: MediaQuery.of(context).size.width * 0.17,
-            ),
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 150,
-              child: Text(
-                song,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
+    child: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          QueryArtworkWidget(
+            quality: 100,
+            artworkWidth: MediaQuery.of(context).size.width * 0.17,
+            artworkHeight: MediaQuery.of(context).size.height * 0.08,
+            keepOldArtwork: true,
+            artworkBorder: BorderRadius.circular(10),
+            id: image,
+            type: ArtworkType.AUDIO,
+            nullArtworkWidget: ClipRRect(
+              child: Image.asset(
+                'assets/images/playlist2.jpg',
+                height: MediaQuery.of(context).size.height * 0.08,
+                width: MediaQuery.of(context).size.width * 0.17,
               ),
             ),
-            SizedBox(
-              width: 150,
-              child: Text(
-                artist,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.01,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: Text(
+                  song,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
-            )
-          ],
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.001,
-        ),
-        IconButton(
-          icon: const Icon(Icons.play_circle_filled),
-          onPressed: () {
-            // NowPlayingPage.nowplayingindex.value = value;
-            // Navigator.of(context).push(
-            //   MaterialPageRoute(
-            //     builder: (ctx) => NowPlayingPage(),
-            //   ),
-            // );
-          },
-          color: Colors.orange,
-        ),
-        IconButton(
-          onPressed: () {
-            showOptions(context, index);
-          },
-          icon: const Icon(
-            Icons.more_vert,
-            color: Colors.black,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: Text(
+                  artist,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            ],
           ),
-        ),
-      ],
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.001,
+          ),
+          IconButton(
+            icon: const Icon(Icons.play_circle_filled),
+            onPressed: () {
+              // NowPlayingPage.nowplayingindex.value = value;
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (ctx) => NowPlayingPage(),
+              //   ),
+              // );
+            },
+            color: Colors.orange,
+          ),
+          IconButton(
+            onPressed: () {
+              showOptions(context, index);
+            },
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }

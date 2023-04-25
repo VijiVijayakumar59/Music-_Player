@@ -33,11 +33,11 @@ class MusicPlayer extends StatefulWidget {
 }
 
 class _MusicPlayerState extends State<MusicPlayer> {
+  // ignore: unused_field
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

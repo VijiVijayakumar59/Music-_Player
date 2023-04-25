@@ -8,7 +8,6 @@ import '../../widget/songwidget.dart';
 
 class RecentPageView extends StatefulWidget {
   const RecentPageView({super.key});
-  
 
   @override
   State<RecentPageView> createState() => _RecentPageViewState();
@@ -55,15 +54,6 @@ class _RecentPageViewState extends State<RecentPageView> {
           "Recently Played",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(
-        //       Icons.search,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        // ],
       ),
       body: ValueListenableBuilder(
         valueListenable: RecentlyPlayedbox.listenable(),
@@ -72,19 +62,18 @@ class _RecentPageViewState extends State<RecentPageView> {
               dbrecent.values.toList().reversed.toList();
 
           return ListView.builder(
-              itemCount: recentsongs.length,
-              itemBuilder: (context, index) => 
-              songtile(
-                song: recentsongs[index].songname!,
-                image: recentsongs[index].id!,
-                time: recentsongs[index].duration!,
-                audioplayer: player,
-                index: index,
-                artist: recentsongs[index].artist!,
-                context: context,
-                recent: recsongs,
-              ),
-              );
+            itemCount: recentsongs.length,
+            itemBuilder: (context, index) => songtile(
+              song: recentsongs[index].songname!,
+              image: recentsongs[index].id!,
+              time: recentsongs[index].duration!,
+              audioplayer: player,
+              index: index,
+              artist: recentsongs[index].artist!,
+              context: context,
+              recent: recsongs,
+            ),
+          );
         }),
       ),
     );

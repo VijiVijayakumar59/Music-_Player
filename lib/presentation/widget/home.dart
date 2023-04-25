@@ -5,8 +5,6 @@ import 'package:music_playerr/functions/dbfunctions.dart';
 import 'package:music_playerr/models/recentplayed.dart';
 import 'package:music_playerr/presentation/screen/recentlyplayed/recent_page.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-
-import '../screen/most_played.dart';
 import '../screen/now_playing.dart';
 
 class RecentPage extends StatefulWidget {
@@ -49,7 +47,7 @@ class _RecentPageState extends State<RecentPage> {
         : Column(
             children: [
               SizedBox(
-                height: 30,
+                height: MediaQuery.of(context).size.height * 0.05,
                 child: ListTile(
                   title: const Text(
                     'Recently Played',
@@ -81,11 +79,12 @@ class _RecentPageState extends State<RecentPage> {
 
                   return Container(
                     margin: const EdgeInsets.all(10),
-                    height: 200,
+                    //height: 200,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(
-                        width: 15,
+                          SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.04,
                       ),
                       scrollDirection: Axis.horizontal,
                       itemCount: recentsongs.length,
@@ -95,7 +94,7 @@ class _RecentPageState extends State<RecentPage> {
                             NowPlayingPage.nowplayingindex.value = index;
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (ctx) =>const RecentPageView(),
+                                builder: (ctx) => const RecentPageView(),
                               ),
                             );
                           },
@@ -107,7 +106,7 @@ class _RecentPageState extends State<RecentPage> {
                                 artworkWidth:
                                     MediaQuery.of(context).size.width * 0.40,
                                 artworkHeight:
-                                    MediaQuery.of(context).size.height * 0.20,
+                                    MediaQuery.of(context).size.height * 0.15,
                                 keepOldArtwork: true,
                                 artworkBorder: BorderRadius.circular(10),
                                 id: recentsongs[index].id!,
@@ -117,25 +116,32 @@ class _RecentPageState extends State<RecentPage> {
                                   child: Image.asset(
                                     'assets/images/playlist2.jpg',
                                     height: MediaQuery.of(context).size.height *
-                                        0.20,
+                                        0.15,
                                     width: MediaQuery.of(context).size.width *
                                         0.40,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                width: 130,
-                                height: 20,
+                                // width: 130,
+                                // height: 20,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.027,
+                                width: MediaQuery.of(context).size.width * 0.38,
                                 child: Text(
                                   recentsongs[index].songname!,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                     fontSize: 18,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w300,
                                   ),
                                 ),
                               ),
-                              Text(recentsongs[index].artist!),
+                              Text(
+                                recentsongs[index].artist!,
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w100),
+                              ),
                             ],
                           ),
                         );
@@ -149,77 +155,3 @@ class _RecentPageState extends State<RecentPage> {
   }
 }
 
-class Artist extends StatelessWidget {
-  final String title;
-  final double borderradius;
-  final String name;
-
-  final List<String> photos;
-  final List<String> artistname;
-
-  const Artist({
-    super.key,
-    required this.title,
-    required this.borderradius,
-    required this.photos,
-    required this.artistname,
-    required this.name,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 30,
-          child: ListTile(
-            title: Text(
-              title,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-            ),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.all(10),
-          height: 200,
-          child: ListView.separated(
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(
-              width: 10,
-            ),
-            scrollDirection: Axis.horizontal,
-            itemCount: photos.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 136, 1, 1),
-                      image: DecorationImage(
-                        image: AssetImage(photos[index]),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(borderradius),
-                      ),
-                    ),
-                    height: 150,
-                    width: 150,
-                  ),
-                  Text(
-                    artistname[index],
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
